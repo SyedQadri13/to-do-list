@@ -1,0 +1,23 @@
+<ion-content class="ion-padding ion-background-wave">
+    <div class="form-card">
+        <h4 class="ion-text-lg-left login">Login</h4>
+        <ion-item class="ion-item-custom">
+            <ion-input [(ngModel)]="username" placeholder="User Name"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-item-custom">
+            <ion-input [(ngModel)]="password" placeholder="Password" type="password"></ion-input>
+        </ion-item>
+
+        <ion-text color="danger" *ngIf="errorMsg" class="ion-text-center ion-margin-bottom-sm">{{ errorMsg }}</ion-text>
+
+        <div class="ion-text-right ion-margin-bottom register-link">
+            <a>Forgot Password?</a>
+        </div>
+
+        <ion-button expand="block" fill="outline" (click)="login()" class="ion-button-solid">Login</ion-button>
+        <div class="ion-text-center register-link ">
+            New Here? <a (click)="goToRegister()">Register</a>
+        </div>
+    </div>
+</ion-content>

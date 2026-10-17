@@ -1,0 +1,185 @@
+ion-content {
+  --background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  &.ion-background-wave {
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      border-radius: 50%;
+      background: linear-gradient(to bottom right, #a8c8f0, #6a9ed0);
+      opacity: 0.7;
+      animation: wave-animation 20s linear infinite alternate;
+      z-index: -1;
+    }
+
+    &::before {
+      top: -50%;
+      left: -25%;
+      transform: rotate(15deg);
+    }
+
+    &::after {
+      bottom: -50%;
+      right: -25%;
+      transform: rotate(-10deg);
+      animation-delay: -10s;
+      opacity: 0.5;
+    }
+  }
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(360deg);
+  }
+}
+
+ion-header ion-toolbar {
+  // Suggested comfort color for the toolbar, with a blur effect
+  --background: rgba(168, 200, 240, 0.7); // Light, semi-transparent blue from your gradient
+  --color: #fff; // White text for better contrast
+  backdrop-filter: blur(10px); // Add a subtle blur to the toolbar as well
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.header-content ion-title {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.task-list-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin-top: 20px;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.new-task-input-item {
+  --background: rgba(255, 255, 255, 0.5); /* Slightly less transparent than individual tasks for input clarity */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  margin-bottom: 15px; /* Add some space below the input field */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.round-task {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin: 10px 0;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.centered-text {
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
+  color: #333; /* Ensure text color is dark for contrast */
+}
+
+ion-button {
+  margin-left: 10px;
+}
+
+ion-icon[name="log-out-outline"] {
+  font-size: 24px;
+  color: #fff; /* Ensure icon color matches toolbar text color */
+}
+
+/* Styles for the completion indicator */
+.completion-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.uncompleted-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #6a9ed0; /* Border color to match your theme */
+  background-color: transparent;
+}
+
+ion-icon[name="checkmark-circle-sharp"] {
+  font-size: 24px;
+  color: #6a9ed0; /* Color for completed icon */
+}
+
+/* Style for completed tasks */
+.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+// Adjustments for input within ion-item
+ion-item {
+  --background: transparent; // Ensure ion-item doesn't override the card's background
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  --padding-start: 16px; // Adjust padding for input field
+  --padding-end: 10px; // Adjust padding for button
+}
+
+ion-input {
+  --placeholder-color: rgba(0, 0, 0, 0.5);
+  --color: #333;
+}
+
+.register-link {
+  font-size: 0.9rem;
+  margin-right: 1rem;
+  color: #6c757d;
+
+  a {
+    color: #4070c8;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

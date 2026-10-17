@@ -1,0 +1,218 @@
+ion-content {
+  --background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  &.ion-background-wave {
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      border-radius: 50%;
+      background: linear-gradient(to bottom right, #a8c8f0, #6a9ed0);
+      opacity: 0.7;
+      animation: wave-animation 20s linear infinite alternate;
+      z-index: -1;
+    }
+
+    &::before {
+      top: -50%;
+      left: -25%;
+      transform: rotate(15deg);
+    }
+
+    &::after {
+      bottom: -50%;
+      right: -25%;
+      transform: rotate(-10deg);
+      animation-delay: -10s;
+      opacity: 0.5;
+    }
+  }
+
+  .form-card {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.3);
+    margin-top: 15rem;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    z-index: 10;
+    position: relative;
+  }
+
+  .ion-item-custom {
+    --background: rgba(255, 255, 255, 0.3);
+    --border-radius: 0.75rem;
+    --padding-start: 1rem;
+    --inner-padding-end: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced6e0;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    ion-input {
+      --padding-top: 0.75rem;
+      --padding-bottom: 0.75rem;
+      color: #2c3e50;
+      font-size: 1rem;
+    }
+  }
+
+  ion-text[color="danger"] {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .ion-margin-bottom {
+    margin-bottom: 1.5rem;
+  }
+
+  .ion-margin-bottom-sm {
+    margin-bottom: 0.5rem;
+  }
+
+  .forgot-password-link {
+    color: #4070c8;
+    font-size: 0.875rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .social-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .social-button {
+      --background: white;
+      --background-activated: #f0f0f0;
+      --border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      font-size: 1.25rem;
+      color: #4a4a4a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .ion-button-solid {
+    --background: #3f72af;
+    --background-activated: #527bad;
+    --color: white;
+    --border-radius: 0.75rem;
+    height: 3rem;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+
+    &:hover {
+      background: #527bad;
+    }
+  }
+
+  .ion-button-clear {
+    --background: transparent;
+    --background-activated: rgba(63, 114, 175, 0.1);
+    --color: #3f72af;
+    --border-radius: 0.75rem;
+    height: 3rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    border: 1px solid #3f72af;
+  }
+}
+
+.login {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+
+  a {
+    color: #4070c8;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.register-link {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  color: #6c757d;
+
+  a {
+    color: #4070c8;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.checkbox-item {
+  --background: transparent;
+  margin: 1rem 0 1.5rem 0;
+
+  ion-label {
+    font-size: 0.9rem;
+    color: #444;
+  }
+
+  .terms-link {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: #4070c8;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: translateX(0) translateY(0) rotate(15deg);
+  }
+  50% {
+    transform: translateX(-10%) translateY(5%) rotate(18deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(15deg);
+  }
+}

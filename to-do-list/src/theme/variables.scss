@@ -1,0 +1,49 @@
+// Ionic Variables and Theming.
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+:root {
+  /** primary **/
+  --ion-color-primary: #4378d8;
+  --ion-color-primary-rgb: 108, 205, 42;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5aa124;
+  --ion-color-primary-tint: #76be3e;
+
+  /** secondary **/
+  --ion-color-secondary: #91159a;
+  --ion-color-secondary-rgb: 145, 21, 154;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #801387;
+  --ion-color-secondary-tint: #9c2d9f;
+
+  /** light **/
+  --ion-color-light: #519a15;
+  --ion-color-light-rgb: 81, 154, 21;
+  --ion-color-light-contrast: #ffffff;
+  --ion-color-light-contrast-rgb: 255, 255, 255;
+  --ion-color-light-shade: #478712;
+  --ion-color-light-tint: #62a32c;
+
+  /** background color **/
+  --ion-background-color: #0f9a8e;
+  --ion-background-color-rgb: 15, 154, 142;
+
+  /** text color danger (for error messages) **/
+  --ion-text-color-danger: #dc2626; // Tailwind red-600 equivalent
+}
+
+/* Base styles for the app */
+body {
+  font-family: 'Inter', sans-serif; // Assuming Inter font is desired
+}
+
+/* Global animations for waves */
+@keyframes wave-animation {
+  0% { transform: translateX(0) translateY(0) rotate(15deg); }
+  50% { transform: translateX(-10%) translateY(5%) rotate(18deg); }
+  100% { transform: translateX(0) translateY(0) rotate(15deg); }
+}

@@ -1,0 +1,33 @@
+<ion-content class="ion-padding ion-background-wave">
+    <div class="form-card">
+        <h4 class="ion-text-lg-left login">Sign Up</h4>
+        <ion-item class="ion-item-custom">
+            <ion-input [(ngModel)]="fullName" placeholder="Full Name"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-item-custom">
+            <ion-input [(ngModel)]="username" placeholder="User Name"></ion-input>
+        </ion-item>
+
+
+        <ion-item class="ion-item-custom">
+            <ion-input [(ngModel)]="password" placeholder="New Password" type="password"></ion-input>
+        </ion-item>
+
+        <ion-text color="danger" *ngIf="errorMsg" class="ion-text-center ion-margin-bottom-sm">{{ errorMsg }}</ion-text>
+
+        <ion-item lines="none" class="checkbox-item">
+            <ion-checkbox slot="start" [(ngModel)]="agreeTerms"></ion-checkbox>
+            <ion-label>
+                I agree to the <a href="#" class="terms-link">Terms & Conditions</a>
+            </ion-label>
+        </ion-item>
+
+
+        <ion-button expand="block" (click)="register()" fill="outline" class="ion-button-solid">Create Account
+        </ion-button>
+        <div class="ion-text-center register-link ">
+            Already Member? <a (click)="goToLogin()">Login</a>
+        </div>
+    </div>
+</ion-content>
