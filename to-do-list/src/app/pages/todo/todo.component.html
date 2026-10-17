@@ -1,27 +1,61 @@
+
 <ion-header>
-    <ion-toolbar>
-        <div class="header-content">
-            <ion-title>All Tasks</ion-title>
-            <div class="register-link ">
-                <a (click)="logout()">Log Out</a>
-            </div>
-        </div>
-    </ion-toolbar>
+  <ion-toolbar>
+    <div class="header-content">
+      <ion-title>All Tasks</ion-title>
+      <div class="register-link">
+        <a (click)="logout()">Log Out</a>
+      </div>
+    </div>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding ion-background-wave">
-    <div class="task-list-container">
-        <ion-item class="new-task-input-item">
-            <ion-input [(ngModel)]="newTask" name="task" placeholder="What’s next?"></ion-input>
-            <ion-button type="submit" fill="solid" (click)="addTask()">+</ion-button>
-        </ion-item>
+  <div class="task-list-container">
+    <ion-item class="new-task-input-item">
+      <ion-input
+        [(ngModel)]="newTask"
+        name="task"
+        placeholder="What's next?"
+        (keyup.enter)="addTask()">
+      </ion-input>
 
-        <ion-item *ngFor="let task of tasks" [class.completed]="task.completed" class="round-task">
-            <div class="completion-indicator" slot="start" (click)="task.completed = !task.completed">
-                <ion-icon *ngIf="task.completed" name="checkmark-circle-sharp"></ion-icon>
-                <div *ngIf="!task.completed" class="uncompleted-circle"></div>
-            </div>
-            <ion-label class="centered-text">{{ task.title }}</ion-label>
-        </ion-item>
-    </div>
+      <ion-button fill="solid" (click)="addTask()">+</ion-button>
+    </ion-item>
+
+    <ion-item
+      *ngFor="let task of tasks"
+      [class.completed]="task.completed"
+      class="round-task">
+
+      <div
+        class="completion-indicator"
+        slot="start"
+        (click)="toggleTask(task)">
+
+        <ion-icon
+          *ngIf="task.completed"
+          name="checkmark-circle-sharp">
+        </ion-icon>
+
+        <div
+          *ngIf="!task.completed"
+          class="uncompleted-circle">
+        </div>
+      </div>
+
+      <ion-label class="centered-text">
+        {{ task.title }}
+      </ion-label>
+
+<ion-button
+  slot="end"
+  fill="solid"
+  color="danger"
+  (click)="deleteTask(task)">
+  Delete
+</ion-button>
+
+    </ion-item>
+  </div>
 </ion-content>

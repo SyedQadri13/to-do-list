@@ -1,28 +1,14 @@
+
 import { Component, inject } from '@angular/core';
-import {
-  IonicModule,
-  IonInput,
-  IonItem,
-  IonList,
-  IonLabel,
-  IonToolbar,
-  IonHeader,
-  IonTitle,
-  IonContent,
-  IonButtons,
-  IonIcon,
-  IonFab,
-  IonFabButton
-} from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
-// It's good practice to explicitly add icons if you're not relying on the default set
-// For this example, assuming IonicModule includes the common ones.
-// If icons don't show, you might need:
-// import { addIcons } from 'ionicons';
-// import { gridOutline, add, checkmarkCircleSharp } from 'ionicons/icons';
+interface Task {
+  title: string;
+  completed: boolean;
+}
 
 @Component({
   standalone: true,
@@ -30,42 +16,74 @@ import { Router } from "@angular/router";
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
   imports: [
-    IonicModule, // IonicModule imports all necessary Ionic components
+    IonicModule,
     FormsModule,
     CommonModule
   ],
 })
 export class TodoComponent {
   newTask = '';
-  tasks: { title: string; completed: boolean }[] = [
-    // Pre-populate tasks to match the image
-    { title: 'Working call', completed: false },
-    { title: 'Meet with doctor', completed: false },
-    { title: 'Go to the shop', completed: true },
-    { title: 'Take the kids to school', completed: true },
-    { title: 'Finish mobile mockups', completed: false },
-    { title: 'Walk with dog', completed: false },
-  ];
 
   private router = inject(Router);
-  constructor() {
-    // If addIcons were needed for specific icons, it would go here or in main.ts
-    // addIcons({ gridOutline, add, checkmarkCircleSharp });
-  }
+  private storageKey = 'todoTasks';
 
-  addTask() {
-    if (this.newTask.trim()) {
-      // Add new task to the top of the list
-      this.tasks.unshift({ title: this.newTask.trim(), completed: false });
-      this.newTask = ''; // Clear input field
+  tasks: Task[] = this.loadTasks();
+
+  private loadTasks(): Task[] {
+    const savedTasks = localStorage.getItem(this.storageKey);
+
+    if (savedTasks !== null) {
+      try {
+        const parsed = JSON.parse(savedTasks);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      } catch {
+        console.error('Could not read saved tasks.');
+      }
     }
+
+    return [
+      { title: 'Working call', completed: false },
+      { title: 'Meet with doctor', completed: false },
+      { title: 'Go to the shop', completed: true },
+      { title: 'Take the kids to school', completed: true },
+      { title: 'Finish mobile mockups', completed: false },
+      { title: 'Walk with dog', completed: false },
+    ];
   }
 
-  logout() {
-    console.log('Navigating to Login page...');
-    this.router.navigateByUrl('/'); // Navigate to the login page route
+  private saveTasks(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.tasks));
   }
 
-  // deleteTask method is removed as per the image design
-  // login method and Router injection are also removed as the login button is gone
+  addTask(): void {
+    const title = this.newTask.trim();
+
+    if (!title) {
+      return;
+    }
+
+    this.tasks.unshift({
+      title,
+      completed: false
+    });
+
+    this.newTask = '';
+    this.saveTasks();
+  }
+
+  deleteTask(task: Task): void {
+    this.tasks = this.tasks.filter(item => item !== task);
+    this.saveTasks();
+  }
+
+  toggleTask(task: Task): void {
+    task.completed = !task.completed;
+    this.saveTasks();
+  }
+
+  logout(): void {
+    this.router.navigateByUrl('/');
+  }
 }
